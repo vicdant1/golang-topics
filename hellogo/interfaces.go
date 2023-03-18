@@ -28,6 +28,19 @@ func ShowData(person IPerson) {
 	person.PrintInformation()
 }
 
+type Vehicle interface {
+	Buzz()
+}
+
+type Motocicle struct {
+	name  string
+	brand string
+}
+
+func (moto Motocicle) Buzz() {
+	fmt.Printf("ZUUUUUUUUUUUUUUUUUUUUUUUUM [%s, %s]", moto.name, moto.brand)
+}
+
 type Person struct {
 	name string
 	age  int
@@ -37,10 +50,12 @@ type FisicalPerson struct {
 	Person
 	idCard  string
 	surname string
+	vehicle Vehicle
 }
 
 func (fp FisicalPerson) PrintInformation() {
 	fmt.Println(fp.name, fp.surname, fp.age, fp.idCard)
+	fp.vehicle.Buzz()
 }
 
 type JuridicPerson struct {
@@ -54,6 +69,12 @@ func (jp JuridicPerson) PrintInformation() {
 }
 
 func main() {
+
+	moto := Motocicle{
+		name:  "CG FAN 125",
+		brand: "Honda",
+	}
+
 	fisicalPerson := FisicalPerson{
 		Person: Person{
 			name: "Joao",
@@ -61,18 +82,21 @@ func main() {
 		},
 		idCard:  "0340342",
 		surname: "Dantas",
+		vehicle: moto,
 	}
 
-	juridicPerson := JuridicPerson{
-		Person: Person{
-			name: "Joao LTDA",
-			age:  2,
-		},
-		cnpj:         "92.132.1231/4214-22",
-		socialReason: "JOAOZINHO LTDA",
-	}
+	fisicalPerson.PrintInformation()
 
-	ShowData(fisicalPerson)
-	ShowData(juridicPerson)
-	InterfaceInformation(fisicalPerson)
+	// juridicPerson := JuridicPerson{
+	// 	Person: Person{
+	// 		name: "Joao LTDA",
+	// 		age:  2,
+	// 	},
+	// 	cnpj:         "92.132.1231/4214-22",
+	// 	socialReason: "JOAOZINHO LTDA",
+	// }
+
+	// ShowData(fisicalPerson)
+	// ShowData(juridicPerson)
+	// InterfaceInformation(fisicalPerson)
 }
