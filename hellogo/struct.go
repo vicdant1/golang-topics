@@ -1,6 +1,10 @@
 package main
 
-import "fmt"
+import (
+	"encoding/json"
+	"fmt"
+	"log"
+)
 
 type Costumer struct {
 	Name   string
@@ -18,8 +22,8 @@ func (internationalCostumer InternationalCostumer) PrintCostumerData() {
 }
 
 type InternationalCostumer struct {
-	Costumer // Kindof composition
-	Country  string
+	Costumer        // Kindof composition
+	Country  string `json:"country"`
 	Name     string
 }
 
@@ -39,4 +43,20 @@ func main() {
 
 	internationalCostumer.PrintCostumerData() // intersting feature
 
+	costumerJson, err := json.Marshal(internationalCostumer)
+
+	if err != nil {
+		log.Fatal(err.Error())
+	}
+
+	fmt.Println(string(costumerJson))
+
+	jsonNewCostumer := `{"Email":"john@johnices.com","IdCard":"90123.123-11","country":"USA","Name":"John Mikalbek"}`
+
+	newCostumer := InternationalCostumer{}
+	newCostumer.PrintCostumerData()
+
+	json.Unmarshal([]byte(jsonNewCostumer), &newCostumer)
+
+	newCostumer.PrintCostumerData()
 }
