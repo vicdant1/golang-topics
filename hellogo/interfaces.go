@@ -38,7 +38,7 @@ type Motocicle struct {
 }
 
 func (moto Motocicle) Buzz() {
-	fmt.Printf("ZUUUUUUUUUUUUUUUUUUUUUUUUM [%s, %s]", moto.name, moto.brand)
+	fmt.Printf("ZUUUUUUUUUUUUUUUUUUUUUUUUM [%s, %s]\n", moto.name, moto.brand)
 }
 
 type Person struct {
@@ -87,16 +87,41 @@ func main() {
 
 	fisicalPerson.PrintInformation()
 
-	// juridicPerson := JuridicPerson{
-	// 	Person: Person{
-	// 		name: "Joao LTDA",
-	// 		age:  2,
-	// 	},
-	// 	cnpj:         "92.132.1231/4214-22",
-	// 	socialReason: "JOAOZINHO LTDA",
-	// }
+	juridicPerson := JuridicPerson{
+		Person: Person{
+			name: "Joao LTDA",
+			age:  2,
+		},
+		cnpj:         "92.132.1231/4214-22",
+		socialReason: "JOAOZINHO LTDA",
+	}
 
 	// ShowData(fisicalPerson)
 	// ShowData(juridicPerson)
 	// InterfaceInformation(fisicalPerson)
+	AssertType(fisicalPerson)
+	AssertType(juridicPerson)
+}
+
+func AssertType(p IPerson) {
+	// one by one, cannot validate many types in a single call
+	if item, ok := p.(FisicalPerson); ok {
+		fmt.Printf("%s is a Fisical Person\n", item.name)
+	}
+
+	if item, ok := p.(JuridicPerson); ok {
+		fmt.Printf("%s is a Juridic Person and its CNPJ is %s\n", item.name, item.cnpj)
+	}
+
+	// many types validation
+	switch p.(type) {
+	case FisicalPerson:
+		fmt.Println("Fisical Person")
+	case JuridicPerson:
+		fmt.Println("Juridic Person")
+	default:
+		fmt.Println("Unreconized Type")
+	}
+
+	fmt.Println()
 }
