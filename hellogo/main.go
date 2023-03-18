@@ -7,20 +7,24 @@ import (
 )
 
 func main() {
-	res, err := Soma(1, 1)
+	resultado, err := Soma(0, 1)
 
 	if err != nil {
-		log.Fatal(err.Error())
+		log.Fatal("Não foi possível completar a operação: " + err.Error())
 	}
 
-	fmt.Println(res)
+	// Same behavior:
+	// fmt.Println(fmt.Sprintf("No problem with operation, result is %d", resultado))
+	fmt.Printf("No problem with operation, result is %d", resultado)
 }
 
-func Soma(x int, y int) (int, error) {
-	res := x + y
-	if res > 10 {
-		return 0, errors.New("total maior que 10")
+func Soma(n1 int, n2 int) (int, error) {
+
+	soma := n1 + n2
+
+	if soma > 10 {
+		return soma, errors.New("soma maior que 10")
 	}
 
-	return res, nil
+	return n1 + n2, nil
 }
