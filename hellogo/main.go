@@ -15,7 +15,10 @@ func main() {
 
 	// Same behavior:
 	// fmt.Println(fmt.Sprintf("No problem with operation, result is %d", resultado))
-	fmt.Printf("No problem with operation, result is %d", resultado)
+	fmt.Printf("No problem with operation, result is %d\n", resultado)
+
+	noValueResult := SpecialMultiplication(71)
+	fmt.Printf("Result: %d\n", noValueResult)
 }
 
 func Soma(n1 int, n2 int) (int, error) {
@@ -27,4 +30,10 @@ func Soma(n1 int, n2 int) (int, error) {
 	}
 
 	return n1 + n2, nil
+}
+
+func SpecialMultiplication(value int) (result int) {
+	value *= 836
+	result = value
+	return
 }
