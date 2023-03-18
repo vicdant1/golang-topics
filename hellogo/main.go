@@ -4,20 +4,16 @@ import (
 	"errors"
 	"fmt"
 	"log"
-	"net/http"
 )
 
 func main() {
-	// dealing with errors:
-	res, err := http.Get("http://google.com.br")
+	res, err := Soma(1, 1)
 
 	if err != nil {
-		log.Fatal("Erro: " + err.Error())
-		// panic("error")
+		log.Fatal(err.Error())
 	}
 
-	fmt.Println(res.Header)
-
+	fmt.Println(res)
 }
 
 func Soma(x int, y int) (int, error) {
