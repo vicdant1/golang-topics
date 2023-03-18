@@ -1,7 +1,12 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
+
+var name string
 
 func main() {
-	fmt.Println("hello, world")
+	result := operations.Soma(1, 1)
+	fmt.Printf("%v", result)
 }
