@@ -3,28 +3,67 @@ package main
 import (
 	"errors"
 	"fmt"
-	"log"
 )
 
-func main() {
-	result, err := Sum(0, 1)
+type Car struct {
+	Name  string
+	Price float32
+	Brand string
+	Year  int
+}
 
-	if err != nil {
-		log.Fatal("Operation problem: " + err.Error())
-	}
+func (car Car) PrintCarInformation() {
+	fmt.Printf("Name: %s\nPrice: %f\nBrand: %s\nYear: %d\n", car.Name, car.Price, car.Brand, car.Year)
+}
+
+func main() {
+	// result, err := Sum(0, 1)
+
+	// if err != nil {
+	// 	log.Fatal("Operation problem: " + err.Error())
+	// }
 
 	// Same behavior:
 	// fmt.Println(fmt.Sprintf("No problem with operation, result is %d", resultado))
-	fmt.Printf("No problem with operation, result is %d\n", result)
+	// fmt.Printf("No problem with operation, result is %d\n", result)
 
-	noValueResult := SpecialMultiplication(71)
-	fmt.Printf("Result: %d\n", noValueResult)
+	// noValueResult := SpecialMultiplication(71)
+	// fmt.Printf("Result: %d\n", noValueResult)
 
-	SequencialSum(1, 2, 3, 3, 43, 42, 34, 23, 42, 34, 23, 42, 342, 3, 42)
+	// SequencialSum(1, 2, 3, 3, 43, 42, 34, 23, 42, 34, 23, 42, 342, 3, 42)
 
+	// // UnderstandingFors()
 	// DivideScreen()
+	// car := Car{
+	// 	Name:  "Fiat UNO",
+	// 	Price: 26000.00,
+	// 	Brand: "Fiat",
+	// 	Year:  2011,
+	// }
+	// car.PrintCarInformation()
 
-	// UnderstandingFors()
+	// Pointers:
+
+	a := 10
+	var firstPointer *int = &a
+	secondPointer := &a
+
+	fmt.Printf("'a' address: %s\nfirstPointer: %s\nsecondPointer: %s\n", &a, firstPointer, secondPointer)
+	DivideScreen()
+
+	PrintPointersValue(a, firstPointer, secondPointer)
+	a = 11
+	PrintPointersValue(a, firstPointer, secondPointer)
+
+	*firstPointer = 24
+
+	PrintPointersValue(a, firstPointer, secondPointer)
+
+	DivideScreen()
+}
+
+func PrintPointersValue(a int, firstPointer *int, secondPointer *int) {
+	fmt.Printf("'a' value: %d\nfirstPointer value: %d\nsecondPointer value: %d\n", a, *firstPointer, *secondPointer)
 }
 
 func DivideScreen() {
@@ -55,7 +94,7 @@ func SequencialSum(x ...int) {
 	}
 	fmt.Println()
 
-	fmt.Printf("The sum of the %d elements is %d", len(x), sum)
+	fmt.Printf("The sum of the %d elements is %d\n", len(x), sum)
 }
 
 func UnderstandingFors() {
@@ -85,5 +124,4 @@ func UnderstandingFors() {
 	for key, value := range intArray {
 		fmt.Printf("Key: %d, Value: %d\n", key, value)
 	}
-
 }
