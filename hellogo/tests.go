@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"time"
+)
 
 func InfinitLoop() {
 	counter := 0
@@ -18,12 +21,28 @@ func NumberPrinting(ch chan<- bool) {
 	ch <- true
 }
 
+func Worker(identifier string, ch <-chan int) {
+	for v := range ch {
+		fmt.Printf("[WORKER %s] Number %d\n", identifier, v)
+		time.Sleep(time.Second)
+	}
+}
+
 func main() {
-	go InfinitLoop()
+	// go InfinitLoop()
+	// ch := make(chan bool)
+	// go NumberPrinting(ch)
+	// <-ch
 
-	ch := make(chan bool)
+	ch := make(chan int)
 
-	go NumberPrinting(ch)
+	go Worker("1", ch)
+	go Worker("2", ch)
 
-	<-ch
+	for i := 0; i < 10; i++ {
+		fmt.Printf("Escrevendo %d\n", i)
+		ch <- i
+	}
+
+	close(ch)
 }
