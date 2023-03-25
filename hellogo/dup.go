@@ -13,7 +13,7 @@ func main() {
 
 	// string: int
 	// "brasilia": 2
-	// words := make(map[string]int)
+	words := make(map[string]int)
 
 	file, err := os.Open("../static/duplicated.txt")
 	if err != nil {
@@ -24,7 +24,10 @@ func main() {
 	scanner := bufio.NewScanner(file)
 
 	for scanner.Scan() {
-		fmt.Println(scanner.Text())
+		words[scanner.Text()]++
 	}
 
+	for city, occurrences := range words {
+		fmt.Printf("%s: %d\n", city, occurrences)
+	}
 }
