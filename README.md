@@ -31,3 +31,29 @@ I wish someday I'd be able to work with this great language
 
     }
     ```
+    
+  - Maps
+    
+    
+    ```go
+    
+    package main
+    import "fmt"
+
+    func main() {
+      myMap := make(map[string]int)
+
+      myMap["aluno0"] = 10
+      myMap["aluno1"] = 40
+      myMap["aluno3"] = 50
+      myMap["aluno2"] = 60
+
+      for key, value := range myMap { // it doesn't prints sorted
+        fmt.Printf("%s: %d\n", key, value)
+      }
+
+      fmt.Println(myMap["aluno5"]) // prints 0
+      fmt.Println(myMap)
+    }
+    
+    ```
