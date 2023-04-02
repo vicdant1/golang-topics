@@ -1,0 +1,28 @@
+Estado,UF,Região,Qtd Mun,N° de habitantes
+Rondônia,RO,Região Norte,52,1749000
+Acre,AC,Região Norte,22,790101
+Amazonas,AM,Região Norte,62,3874000
+Roraima,RR,Região Norte,15,496936
+Pará,PA,Região Norte,144,6704000
+Amapá,AP,Região Norte,16,751000
+Tocantins,TO,Região Norte,139,1497000
+Maranhão,MA,Região Nordeste,217,6851000
+Piauí,PI,Região Nordeste,224,3195000
+Ceará,CE,Região Nordeste,184,8843000
+Rio Grande do Norte,RN,Região Nordeste,167,3409000
+Paraíba,PB,Região Nordeste,223,3944000
+Pernambuco,PE,Região Nordeste,185,9278000
+Alagoas,AL,Região Nordeste,102,3322000
+Sergipe,SE,Região Nordeste,75,2220000
+Bahia,BA,Região Nordeste,417,15130000
+Minas Gerais,MG,Região Sudeste,853,20870000
+Espírito Santo,ES,Região Sudeste,78,3885000
+Rio de Janeiro,RJ,Região Sudeste,92,6748000
+São Paulo,SP,Região Sudeste,645,12330000
+Paraná,PR,Região Sul,399,11080000
+Santa Catarina,SC,Região Sul,295,7165000
+Rio Grande do Sul,RS,Região Sul,497,11290000
+Mato Grosso do Sul,MS,Região Centro-Oeste,79,2620000
+Mato Grosso,MT,Região Centro-Oeste,141,3224000
+Goiás,GO,Região Centro-Oeste,246,6523000
+Distrito Federal,DF,Região Centro-Oeste,1,2923369
