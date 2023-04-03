@@ -57,3 +57,24 @@ I wish someday I'd be able to work with this great language
     }
     
     ```
+  - *Reader | *Scanner
+    - Reader reads a single value (I have to use a specific function depending on what kind of value I'm trying to read)
+      ```go
+      
+      reader := bufio.NewReader(os.Stdin)
+      input, _ := reader.ReadLine("\n")      
+      
+      ```
+    - Scanner can read many values (or a single as well):
+      
+      ```go
+      
+      scanner := bufio.NewScanner(os.Stdin)
+      
+      scanner.Scan()
+      
+      text := scanner.Text()
+      
+      ```
+    
+  
