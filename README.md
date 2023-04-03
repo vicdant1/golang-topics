@@ -75,6 +75,7 @@ I wish someday I'd be able to work with this great language
       
       text := scanner.Text()
       
-      ```
-    
+      ``` 
+      
+  - Implement something with Flags ([package](https://pkg.go.dev/flag))
   
