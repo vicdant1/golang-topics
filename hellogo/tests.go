@@ -1,7 +1,9 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
+	"os"
 	"time"
 )
 
@@ -34,15 +36,23 @@ func main() {
 	// go NumberPrinting(ch)
 	// <-ch
 
-	ch := make(chan int)
+	// ch := make(chan int)
 
-	go Worker("1", ch)
-	go Worker("2", ch)
+	// go Worker("1", ch)
+	// go Worker("2", ch)
 
-	for i := 0; i < 10; i++ {
-		fmt.Printf("Escrevendo %d\n", i)
-		ch <- i
-	}
+	// for i := 0; i < 10; i++ {
+	// 	fmt.Printf("Escrevendo %d\n", i)
+	// 	ch <- i
+	// }
 
-	close(ch)
+	// close(ch)
+
+	var teste string
+	scanner := bufio.NewScanner(os.Stdin)
+
+	scanner.Scan()
+	teste = scanner.Text()
+
+	fmt.Println(teste)
 }
