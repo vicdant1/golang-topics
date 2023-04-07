@@ -51,7 +51,7 @@ func main() {
 	var teste string
 	scanner := bufio.NewScanner(os.Stdin)
 
-	scanner.Scan()
+	// scanner.Scan()
 	teste = scanner.Text()
 
 	fmt.Println(teste)
@@ -61,5 +61,12 @@ func main() {
 	for i := 0; i <= 40; i += 5 {
 		fmt.Printf("Current index: %d\n", i)
 	}
+
+	// consts
+
+	const pi = 3.14
+	const tax = 0.02
+
+	fmt.Printf("%v %v\n", pi, tax)
 
 }
