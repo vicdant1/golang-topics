@@ -55,4 +55,11 @@ func main() {
 	teste = scanner.Text()
 
 	fmt.Println(teste)
+
+	fmt.Println("=*=*=*=*=*=*=*=*| FOR WITH STEP |*=*=*=*=*=*=*=*=")
+
+	for i := 0; i <= 40; i += 5 {
+		fmt.Printf("Current index: %d\n", i)
+	}
+
 }
