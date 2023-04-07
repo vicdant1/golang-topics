@@ -30,6 +30,16 @@ func Worker(identifier string, ch <-chan int) {
 	}
 }
 
+func testGoRoutine() {
+	i := 0
+	for i < 5 {
+		fmt.Println("Test")
+		time.Sleep(time.Second)
+		i++
+	}
+
+}
+
 func main() {
 	// go InfinitLoop()
 	// ch := make(chan bool)
@@ -68,5 +78,6 @@ func main() {
 	const tax = 0.02
 
 	fmt.Printf("%v %v\n", pi, tax)
-
+	go testGoRoutine()
+	panic("test")
 }
