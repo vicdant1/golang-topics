@@ -128,6 +128,33 @@ I wish someday I'd be able to work with this great language
     n = x.(int)        // ILLEGAL
     ```
     
+  - Generics
+  ```go
+    // K may be integer, V may be int, float64, string
+    type IndexTable[K int, V int|float64|string] struct {
+      ket K
+      values []V
+    }
     
+    // I am passing this explicit type because compiler can't understand it sometimes
+    table := IndexTable[int, int] {1, []int {1,2,3,4}}
+    
+    // In functions:
+    
+    func DoSomething[T int|float64](x, y T) T{
+      return x + y
+    }
+    
+    // I can create an interface containing the types I admit (type set)
+    type Number interface {
+      int | float64
+    }
+    
+    func DoSomething[Number](x, y T) T{
+      return x + y
+    }
+  ```
+  
+
     
     
