@@ -79,3 +79,55 @@ I wish someday I'd be able to work with this great language
       
   - Implement something with Flags ([package](https://pkg.go.dev/flag))
   
+  - Methods:
+  
+    ```go
+      type Rectangle struct {}
+      // This r is called "reciever" || it can be a pointer as well
+      func(r Rectangle) printArea() {
+        fmt.Println("Test")
+      }
+    ```
+  - Interfaces
+  
+    - In order to implement this interface my struct should implement all of the methods
+    ```go
+    type IFigure {
+      area() float32
+    }  
+    ```
+    - Go has a concept of empty interface, anything automatically implements it:
+    
+    ```go
+    func main(){
+      // implements any type - kindof dynamic typing in go
+      var i interface {}
+      
+      i = 42
+      fmt.Println("Value:", i)
+      
+      i = "Hello"
+      fmt.Println("Value:", i)
+    }
+    
+    // can only use type assertion on interfaces
+    
+    var x interface{} = "foo"
+
+    var s string = x.(string)
+    fmt.Println(s)     // "foo"
+
+    s, ok := x.(string)
+    fmt.Println(s, ok) // "foo true"
+
+    n, ok := x.(int)
+    fmt.Println(n, ok) // "0 false"
+
+    fmt.Println(n.(type))
+    
+    n = x.(int)        // ILLEGAL
+    ```
+    
+    
+    
+    
