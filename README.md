@@ -156,5 +156,8 @@ I wish someday I'd be able to work with this great language
     ```
 
 
+  - Comparable
+    In GO, we can use 'comparable' as an identifier of primitive types that can be both compared and used as generic type.
+
     
     
