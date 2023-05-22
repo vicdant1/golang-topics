@@ -158,6 +158,51 @@ I wish someday I'd be able to work with this great language
 
   - Comparable
     In GO, we can use 'comparable' as an identifier of primitive types that can be both compared and used as generic type.
+    
+  - Modularization
+    In Go, we implement packages as directories:
+    package university -> ./university
+    things we want to export in package should begin with capital first letter
+    
+    ```go
+    package temperature
+    
+    // It begins with capital letter
+    func CelsiusToFahrenheit(t float64) float64 {
+      return (t*9/5) + 32
+    }
+    
+    //------------ TO USE IT ------------
+    package main
+    import (
+      "fmt"  
+      "temperature"
+    )
+    
+    func main() {
+      temp := temperature.CelsiusToFahrenheit(10.2)
+      
+      fmt.Println(temp)
+    }
+    
+    ```
+    
+    Modules simplifies dependecies
+    
+    go.mod - lists every package program needs to work
+    
+    go mod init module-name
+    
+    // generates it on ./go.mod
+    
+    module module-name
+    
+    go 1.20 // go version
+    
+    go mod tidy // check program and insert dependency requirements on go.mod -> generates a go.sum (it checks integrity)
+    
+   
+
 
     
     
