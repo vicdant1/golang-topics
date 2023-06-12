@@ -202,7 +202,62 @@ I wish someday I'd be able to work with this great language
     go mod tidy // check program and insert dependency requirements on go.mod -> generates a go.sum (it checks integrity)
     
    
-
-
+  - Testing
+    Go has a native tool focused on tests (mainly unity tests);
+    There are two main tests - basic (one input produces one output) and tabled (set of test cases submitted to the same function \[similar to theory]\);
+    Testing should be apart from application;
+    
+    Go test files should:
+    1. belong to the same directory and package as the code they test
+    2. be named ending with _test.go
+    3. import package testing
+    
+    test functions names should begin with Test:
+    
+    ```go
+    // *testing.T is a generic testing pointer, it provides many possibilities
+    func TestCelsiusToGahrenheit(t *testing.T) {
+      cTemp := 29.0
+      fTemp := 84.2
+      
+      // Fatal kills execution
+      // Error prints error and keeps going with test cases
+      if(CelsiusToFahrenheit(cTemp) != fTemp) {
+        t.Fatal("\nError on converting from Celsius to Fahrenheit")
+      } else {
+        t.Log("\nConverting from Celsius to Fahrenheit: correct")
+      }
+    }
+    ```
+    
+    Running:
+    ```
+    go run test -run=TestCelsiusToFahrenheit
+    go run test -run=TestCelsiusToFahrenheit -v // -v = verbose
+    ```
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     
