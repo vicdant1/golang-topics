@@ -228,12 +228,27 @@ I wish someday I'd be able to work with this great language
         t.Log("\nConverting from Celsius to Fahrenheit: correct")
       }
     }
+    
+    // In order to test many cases, we create a slice to store param and expected value and loop over it
     ```
     
     Running:
     ```
+    - run -> recieves a function to test (if we dont specify this flag, all test functions will be runned)
+    - v -> verbose test mode
+    
     go run test -run=TestCelsiusToFahrenheit
-    go run test -run=TestCelsiusToFahrenheit -v // -v = verbose
+    go run test -run=TestCelsiusToFahrenheit -v
+    ```
+    
+    Go allow us to run tests in parallel (by default it runs sequentially):
+    
+    ```
+    func TestCelsiusToFahrenheit(t *testing.T) {
+      t.Parallel() // <====================== it will make this test run parallel to next function
+      // Test code
+    }
+    
     ```
     
     
