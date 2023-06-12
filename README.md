@@ -234,45 +234,36 @@ I wish someday I'd be able to work with this great language
     
     Running:
     ```
-    - run -> recieves a function to test (if we dont specify this flag, all test functions will be runned)
+    - run -> recieves a function to test 
+             (if we dont specify this flag, all test functions will be runned)
+             run="none" // disable test functions in test files (useful when working with benchmark)
+    -bench -> recieves a function to test 
+             (if we dont specify this flag, all test functions will be runned)
+             bench="." // runs all benchmarks
+             
+    - benchmem -> show information about memmory allocation
     - v -> verbose test mode
-    
+        
     go run test -run=TestCelsiusToFahrenheit
     go run test -run=TestCelsiusToFahrenheit -v
     ```
     
     Go allow us to run tests in parallel (by default it runs sequentially):
     
-    ```
+    ```go
     func TestCelsiusToFahrenheit(t *testing.T) {
       t.Parallel() // <====================== it will make this test run parallel to next function
       // Test code
-    }
-    
+    }    
     ```
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+  - Benchmarking
+    Go benchmark files should:
+    1. belong to the same directory and package as the code they test
+    2. be named ending with _test.go
+    3. import package testing
+    4. recieve b *testing.B pointer (acctualy this is not mandatory)
+
+    OBS.: 
+      - b.N < as much as possible in 1 second (comes from pointer)
+      - b.ResetTimer() should be called at the beginning to reset in each function (generate a fair result)
