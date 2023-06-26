@@ -274,6 +274,7 @@ I wish someday I'd be able to work with this great language
     We can create servers and clients
 
     ```go
+    // SERVER
     
     package main
     import (
@@ -285,9 +286,120 @@ I wish someday I'd be able to work with this great language
       res.Write([]byte("Hello, stranger"))
       // fmt.Fprint(res, "Hello, stranger") -> mesmo comportamento
     }
+
+    func printNow(res http.ResponseWriter, req *http.Request) {
+      currentTime := time.Now()
+      fmt.Fprint(res, currentTime.Format("02/01/2006 15:04:05"))
+    }
+    
     func main() {
+
+      // We can custom http server through http object
+      server := &http.Server {
+        Addr: "localhost:4000",
+        WriteTimeout: 10 * time.Second,
+      }
+      
       http.HandleFunc("/", sayHello)
-      log.Fatal(http.ListenAndServe("localhost:4000", nil))
+      http.HandleFunc("/now", printNow)
+      
+      //log.Fatal(http.ListenAndServe("localhost:4000", nil)) // Listen to default http server
+      log.Fatal(server.ListenAndServe("localhost:4000", nil)) // Listen to my custom http server
+    }
+    
+    ```
+
+
+    ```go
+    // CLIENT
+
+    package main
+    import (
+      "fmt"
+      "io"
+      "log"
+      "net/http"
+    )
+    
+    const url = "https://www.boredapi.com/api/activity"
+
+    // Using package method
+    func main() {
+      // GET, HEAD, POST, PUT, DELETE
+
+      if res, err := http.Get(url); err != nil {
+        log.Fatal(err)
+      } else {
+        contents, _ := io.ReadAll(res.Body)
+        defer res.Body.Close()
+        fmt.Println(string(contents))
+      }
+    }
+
+    // Creating request manually
+    func main() {
+      req, _ := http.NewRequest("GET", url, nil)
+      if res, err := http.DefaultClient.Do(req); err != nil {
+        log.Fatal(err)
+      } else {
+        contents, _ := io.ReadAll(res.Body)
+        defer res.Body.Close()
+        fmt.Println(string(contents))
+      }
+    }
+
+    // We can create custom clients as well overloading config
+    func main(){
+      client := &http.Client{Timeout: 3 * time.Second} // OVERLOAD CLIENT CONFIG
+      if res, err := client.Get(url); err != nil {
+        log.Fatal(err)
+      } else {
+        contents, _ := io.ReadAll(res.Body)
+        defer res.Body.Close()
+        fmt.Println(string(contents))
+      }
+    }
+
+    // Sending a POST request
+    const endpoint = "https://httpbin.org/post"
+    func main() {
+      data := strings.NewReader(`{ "activity": "Learn to play a new instrument", "type": "music" }`)
+      if res, err := http.Post(endpoint, "application/json", data); err != nil {
+        log.Fatal(err)
+      } else {
+        contents, _ := io.ReadAll(res.Body)
+        defer res.Body.Close()
+        fmt.Printf("%s", contents)
+      }
+    }
+
+    // Dealing with http errors
+    res, err := http.Get(url)
+    switch {
+    case 400 <= res.StatusCode && res.StatusCode < 500:
+      fmt.Println("Client error")
+    case 500 <= res.StatusCode && res.StatusCode < 600:
+      fmt.Println("Server error")
+    }
+
+    // Mapping json response to Structured Data
+    const url = "https://www.boredapi.com/api/activity"
+    type Activity struct {
+      Activity string
+      Type string
+      Participants int
+    }
+
+    contents, _ := io.ReadAll(res.Body)
+    defer res.Body.Close()
+    var a Activity
+    err := json.Unmarshal(contents, &a) // Maps to data structure
+    if err != nil {
+      log.Fatal(err)
+    } else {
+      fmt.Printf("What? %s\n", a.Activity)
+      fmt.Printf("What kind? %s\n", a.Type)
+      fmt.Printf("How many? %d\n", a.Participants)
     }
     
     ```
