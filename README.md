@@ -262,8 +262,40 @@ I wish someday I'd be able to work with this great language
     1. belong to the same directory and package as the code they test
     2. be named ending with _test.go
     3. import package testing
-    4. recieve b *testing.B pointer (acctualy this is not mandatory)
+    4. recieve b *testing.B pointer (actually this is not mandatory)
 
     OBS.: 
       - b.N < as much as possible in 1 second (comes from pointer)
       - b.ResetTimer() should be called at the beginning to reset in each function (generate a fair result)
+   
+  - HTTP Under GO
+    https://pkg.go.dev/net/http
+
+    We can create servers and clients
+
+    ```go
+    
+    package main
+    import (
+      "fmt"
+      "log"
+      "net/http"
+    )
+    func sayHello(res http.ResponseWriter, req *http.Request) {
+      res.Write([]byte("Hello, stranger"))
+      // fmt.Fprint(res, "Hello, stranger") -> mesmo comportamento
+    }
+    func main() {
+      http.HandleFunc("/", sayHello)
+      log.Fatal(http.ListenAndServe("localhost:4000", nil))
+    }
+    
+    ```
+
+
+
+
+
+
+
+    
